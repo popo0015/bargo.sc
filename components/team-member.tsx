@@ -48,16 +48,6 @@ export default function TeamMemberImproved({ member, index }: TeamMemberProps) {
         <div className="mt-4 bg-bargo-mauve/10 p-3 rounded-lg">
           <p className="text-sm italic text-bargo-text">"{member.quote}"</p>
         </div>
-
-        <div className="mt-4 flex justify-center">
-          <motion.button
-            className="text-bargo-mauve hover:text-bargo-sage transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Connect
-          </motion.button>
-        </div>
       </div>
     </motion.div>
   )

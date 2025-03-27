@@ -61,38 +61,14 @@ export default function Home() {
   const team = [
     {
       id: 1,
-      name: "Nikolay Nikov",
-      role: "Chief Financial Officer (CFO)",
-      image: "/images/team/nikolay-nikov.png",
+      name: "Anouk Kerkhove",
+      role: "Founder / Chief Executive Officer (CEO)",
+      image: "/images/team/anouk-kerkhove.png",
       quote:
-        "I keep BarGo's finances in check so we don't accidentally spend our entire budget on snacks. Spreadsheets, numbers, and making sure we stay profitable: that's my game.",
+        "I had a simple idea and somehow convinced everyone it was brilliant. Now, I make sure BarGo stays on track, grows fast, and doesn't run out of soap... or ambition. No slip-ups allowed!",
     },
     {
       id: 2,
-      name: "Joris Verdurmen",
-      role: "HR Lead",
-      image: "/images/team/joris-verdurmen.png",
-      quote:
-        "I keep the peace and solve problems, so you can think of me as the HR equivalent of a conditioner: smoothing things over and making everything flow a little more seamlessly.",
-    },
-    {
-      id: 3,
-      name: "Louise-Marie Guy",
-      role: "Sales & Marketing Lead",
-      image: "/images/team/louise-marie-guy.png",
-      quote:
-        "As Sales & Marketing Lead, I make sure BarGo is everywhere. If you haven't heard of us, you're clearly not using enough soap (or following us on social media).",
-    },
-    {
-      id: 4,
-      name: "Javier Guinea Ferrer",
-      role: "Partnership Lead / Financial Support",
-      image: "/images/team/javier-guinea-ferrer.png",
-      quote:
-        "As Partnership Lead, I don't do partnerships, but I make sure our finances don't slip through the cracks, like a bar of soap in a slippery shower.",
-    },
-    {
-      id: 5,
       name: "Mia Canuti",
       role: "Chief Operational Officer (COO)",
       image: "/images/team/mia-canuti.png",
@@ -100,12 +76,36 @@ export default function Home() {
         "I make sure operations run smoother than our products glide through TSA, making sure everything is organized, efficient, and ready for action every step of the way.",
     },
     {
-      id: 6,
-      name: "Anouk Kerkhove",
-      role: "Founder / Chief Executive Officer (CEO)",
-      image: "/images/team/anouk-kerkhove.png",
+      id: 3,
+      name: "Nikolay Nikov",
+      role: "Chief Financial Officer (CFO)",
+      image: "/images/team/nikolay-nikov.png",
       quote:
-        "I had a simple idea and somehow convinced everyone it was brilliant. Now, I make sure BarGo stays on track, grows fast, and doesn't run out of soap... or ambition. No slip-ups allowed!",
+        "I keep BarGo's finances in check so we don't accidentally spend our entire budget on snacks. Spreadsheets, numbers, and making sure we stay profitable: that's my game.",
+    },
+    {
+      id: 4,
+      name: "Joris Verdurmen",
+      role: "HR Lead",
+      image: "/images/team/joris-verdurmen.png",
+      quote:
+        "I keep the peace and solve problems, so you can think of me as the HR equivalent of a conditioner: smoothing things over and making everything flow a little more seamlessly.",
+    },
+    {
+      id: 5,
+      name: "Louise-Marie Guy",
+      role: "Sales & Marketing Lead",
+      image: "/images/team/louise-marie-guy.png",
+      quote:
+        "As Sales & Marketing Lead, I make sure BarGo is everywhere. If you haven't heard of us, you're clearly not using enough soap (or following us on social media).",
+    },
+    {
+      id: 6,
+      name: "Melissa Mali",
+      role: "Supply Chain Lead",
+      image: "/images/team/melissa-mali.png",
+      quote:
+        "As Supply Chain Lead, I find containers that are basically uncrackable. If it can't survive me throwing it across the office, it's not making the cut.",
     },
     {
       id: 7,
@@ -117,12 +117,12 @@ export default function Home() {
     },
     {
       id: 8,
-      name: "Melissa Mali",
-      role: "Supply Chain Lead",
-      image: "/images/team/melissa-mali.png",
+      name: "Javier Guinea Ferrer",
+      role: "Partnership Lead / Financial Support",
+      image: "/images/team/javier-guinea-ferrer.png",
       quote:
-        "As Supply Chain Lead, I find containers that are basically uncrackable. If it can't survive me throwing it across the office, it's not making the cut.",
-    },
+        "As Partnership Lead, I don't do partnerships, but I make sure our finances don't slip through the cracks, like a bar of soap in a slippery shower.",
+    }
   ]
 
   const scrollToSection = (sectionId: string) => {
@@ -146,24 +146,7 @@ export default function Home() {
         ref={heroRef}
         className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-bargo-mauve to-bargo-cream overflow-hidden pt-20"
       >
-        <div className="absolute w-full h-full">
-          {/* Decorative clouds */}
-          <motion.div
-            className="absolute top-[15%] left-[10%] w-20 h-12 bg-white rounded-full opacity-80"
-            animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
-            transition={{ repeat: Number.POSITIVE_INFINITY, duration: 5, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute top-[30%] right-[15%] w-32 h-16 bg-white rounded-full opacity-80"
-            animate={{ y: [0, -15, 0], x: [0, -8, 0] }}
-            transition={{ repeat: Number.POSITIVE_INFINITY, duration: 7, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute bottom-[25%] left-[20%] w-24 h-14 bg-white rounded-full opacity-80"
-            animate={{ y: [0, 12, 0], x: [0, 6, 0] }}
-            transition={{ repeat: Number.POSITIVE_INFINITY, duration: 6, ease: "easeInOut" }}
-          />
-        </div>
+        
 
         {/* Flying plane animation */}
         <motion.div
@@ -201,7 +184,7 @@ export default function Home() {
         </motion.div>
 
         <div className="container mx-auto px-4 z-20">
-          <div className="max-w-3xl mx-auto text-center text-white">
+          <div className="max-w-3xl mx-auto text-center text-black">
             <motion.h1
               className="text-5xl md:text-7xl font-bold mb-6"
               initial={{ opacity: 0, y: 20 }}
@@ -230,7 +213,7 @@ export default function Home() {
         </div>
 
         <motion.div
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white cursor-pointer"
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-black cursor-pointer"
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}
           onClick={() => scrollToSection("products")}
@@ -248,7 +231,7 @@ export default function Home() {
             animate={isProductsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold mb-4 text-bargo-text">Our Travel Soaps</h2>
+            <h2 className="text-4xl font-bold mb-4 text-bargo-text text-black">Our Travel Soaps</h2>
             <p className="text-xl text-bargo-text/80 max-w-2xl mx-auto">
               One travel-ready solution with four essentials in a sleek, compact case.
             </p>
@@ -407,8 +390,8 @@ export default function Home() {
             animate={isContactInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold mb-4 text-white">Get In Touch</h2>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold mb-4 text-black">Get In Touch</h2>
+            <p className="text-xl text-black/80 max-w-2xl mx-auto">
               Have questions about our products or interested in wholesale opportunities?
             </p>
           </motion.div>
@@ -421,32 +404,32 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg">
-                <h3 className="text-2xl font-bold mb-6 text-white">Contact Information</h3>
+                <h3 className="text-2xl font-bold mb-6 text-black">Contact Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-center">
-                    <Mail className="mr-4 text-white" />
-                    <p className="text-white">info@bargo.sc</p>
+                    <Mail className="mr-4 text-black" />
+                    <p className="text-black">info@bargo.sc</p>
                   </div>
                   <div className="flex items-center">
-                    <MapPin className="mr-4 text-white" />
-                    <p className="text-white">HZ University of Applied Sciences, Netherlands</p>
+                    <MapPin className="mr-4 text-black" />
+                    <p className="text-black">HZ University of Applied Sciences, Netherlands</p>
                   </div>
                 </div>
 
-                <h3 className="text-2xl font-bold mt-8 mb-6 text-white">Follow Us</h3>
+                <h3 className="text-2xl font-bold mt-8 mb-6 text-black">Follow Us</h3>
                 <div className="flex space-x-4">
                   <a
                     href="https://www.instagram.com/bargo.sc/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-bargo-sage transition-colors text-white"
+                    className="hover:text-bargo-sage transition-colors text-black"
                   >
                     <Instagram size={24} />
                   </a>
-                  <a href="#" className="hover:text-bargo-sage transition-colors text-white">
+                  <a href="#" className="hover:text-bargo-sage transition-colors text-black">
                     <Facebook size={24} />
                   </a>
-                  <a href="#" className="hover:text-bargo-sage transition-colors text-white">
+                  <a href="#" className="hover:text-bargo-sage transition-colors text-black">
                     <Twitter size={24} />
                   </a>
                 </div>
@@ -479,27 +462,27 @@ export default function Home() {
               </div>
 
               <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg">
-                <h3 className="text-2xl font-bold mb-6 text-white">Send Us a Message</h3>
+                <h3 className="text-2xl font-bold mb-6 text-black">Send Us a Message</h3>
                 <form>
                   <div className="mb-4">
                     <input
                       type="text"
                       placeholder="Your Name"
-                      className="w-full p-3 rounded bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 text-white placeholder-white/70"
+                      className="w-full p-3 rounded bg-white/20 backdrop-blur-sm border border-black/40 focus:outline-none focus:ring-2 focus:ring-white/50 text-black placeholder-black/70"
                     />
                   </div>
                   <div className="mb-4">
                     <input
                       type="email"
                       placeholder="Your Email"
-                      className="w-full p-3 rounded bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 text-white placeholder-white/70"
+                      className="w-full p-3 rounded bg-white/20 backdrop-blur-sm border border-black/40 focus:outline-none focus:ring-2 focus:ring-white/50 text-black placeholder-black/70"
                     />
                   </div>
                   <div className="mb-4">
                     <textarea
                       placeholder="Your Message"
                       rows={4}
-                      className="w-full p-3 rounded bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 text-white placeholder-white/70"
+                      className="w-full p-3 rounded bg-white/20 backdrop-blur-sm border border-black/40 focus:outline-none focus:ring-2 focus:ring-white/50 text-black placeholder-black/70"
                     ></textarea>
                   </div>
                   <motion.button
@@ -518,7 +501,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-6 bg-bargo-text text-white text-center">
+      <footer className="py-6 bg-bargo-text text-black text-center">
         <div className="container mx-auto px-4">
           <p>© {new Date().getFullYear()} Bargo.sc. All rights reserved.</p>
         </div>
