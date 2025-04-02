@@ -2,11 +2,12 @@
 
 import { useRef } from "react"
 import { motion, useScroll, useTransform, useInView } from "framer-motion"
-import { ArrowDown, Instagram, Facebook, Twitter, Mail, MapPin } from "lucide-react"
+import { Instagram, Facebook, Twitter, Mail, MapPin, Leaf, Package, Droplets } from "lucide-react"
 import Navbar from "@/components/navbar"
-import ProductCardImproved from "@/components/product-card"
-import TeamMemberImproved from "@/components/team-member"
-import SoapCaseImproved from "@/components/soap-case"
+import TeamMember from "@/components/team-member"
+import HandDrawnHero from "@/components/hand-drawn-hero"
+import ProductCardSketch from "@/components/product-card"
+import FeatureSketch from "@/components/feature-sketch"
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -28,33 +29,33 @@ export default function Home() {
       id: 1,
       name: "Lavender Calm",
       description: "Soothing lavender soap for relaxation during your travels",
-      color: "bg-purple-100",
-      textColor: "text-purple-800",
-      soapColor: "bg-purple-300",
+      color: "bg-lavender-300",
+      textColor: "text-lavender-800",
+      ingredients: ["Lavender", "Shea Butter", "Olive Oil", "Coconut Oil"],
     },
     {
       id: 2,
       name: "Citrus Fresh",
       description: "Energizing citrus soap to refresh after a long flight",
-      color: "bg-yellow-100",
-      textColor: "text-yellow-800",
-      soapColor: "bg-yellow-300",
+      color: "bg-honey-200",
+      textColor: "text-honey-800",
+      ingredients: ["Orange Peel", "Lemon Oil", "Honey", "Jojoba Oil"],
     },
     {
       id: 3,
       name: "Ocean Breeze",
       description: "Refreshing ocean scent to remind you of beach destinations",
-      color: "bg-blue-100",
-      textColor: "text-blue-800",
-      soapColor: "bg-blue-300",
+      color: "bg-sky-200",
+      textColor: "text-sky-800",
+      ingredients: ["Sea Salt", "Algae Extract", "Coconut Oil", "Aloe Vera"],
     },
     {
       id: 4,
       name: "Forest Mint",
       description: "Invigorating mint soap inspired by forest adventures",
-      color: "bg-green-100",
-      textColor: "text-green-800",
-      soapColor: "bg-green-300",
+      color: "bg-olive-200",
+      textColor: "text-olive-800",
+      ingredients: ["Mint Leaves", "Eucalyptus", "Tea Tree Oil", "Avocado Oil"],
     },
   ]
 
@@ -122,7 +123,31 @@ export default function Home() {
       image: "/images/team/javier-guinea-ferrer.png",
       quote:
         "As Partnership Lead, I don't do partnerships, but I make sure our finances don't slip through the cracks, like a bar of soap in a slippery shower.",
-    }
+    },
+  ]
+
+  const features = [
+    {
+      title: "Eco-friendly",
+      description: "Sustainable materials and zero plastic waste for guilt-free travel.",
+      icon: <Leaf size={24} />,
+      color: "#A9BEA5",
+      index: 0,
+    },
+    {
+      title: "Compact",
+      description: "Perfectly sized for carry-on luggage, saving valuable space in your travel bag.",
+      icon: <Package size={24} />,
+      color: "#C9A9A6",
+      index: 1,
+    },
+    {
+      title: "Mess-free",
+      description: "Our innovative case design prevents leaks and spills, keeping your luggage clean.",
+      icon: <Droplets size={24} />,
+      color: "#B8D8E8",
+      index: 2,
+    },
   ]
 
   const scrollToSection = (sectionId: string) => {
@@ -136,110 +161,43 @@ export default function Home() {
   }
 
   return (
-    <main className="relative overflow-x-hidden bg-bargo-cream">
+    <main className="relative overflow-x-hidden bg-cream-50">
       {/* Navbar */}
       <Navbar />
 
       {/* Hero Section */}
-      <section
-        id="home"
-        ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-bargo-mauve to-bargo-cream overflow-hidden pt-20"
-      >
-        
-
-        {/* Flying plane animation */}
-        <motion.div
-          className="absolute z-10"
-          style={{
-            x: planeX,
-            y: planeY,
-            rotate: planeRotate,
-          }}
-        >
-          <div className="relative w-32 h-32">
-            <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M22 16.5H8.3C7.5 16.5 7 16 7 15.2C7 14.4 7.5 13.9 8.3 13.9H22V16.5Z" fill="white" />
-              <path d="M22 10.1H8.3C7.5 10.1 7 9.6 7 8.8C7 8 7.5 7.5 8.3 7.5H22V10.1Z" fill="white" />
-              <path d="M22 13.9H2V10.1H22V13.9Z" fill="white" />
-              <path
-                d="M8.3 16.5C7.9 16.5 7.5 16.4 7.1 16.1C6.7 15.8 6.5 15.5 6.5 15.2L6.5 8.8C6.5 8.5 6.7 8.2 7.1 7.9C7.5 7.6 7.9 7.5 8.3 7.5L8.3 16.5Z"
-                fill="white"
-              />
-              <path
-                d="M8.3 16.5C8.7 16.5 9.1 16.4 9.5 16.1C9.9 15.8 10.1 15.5 10.1 15.2L10.1 8.8C10.1 8.5 9.9 8.2 9.5 7.9C9.1 7.6 8.7 7.5 8.3 7.5L8.3 16.5Z"
-                fill="white"
-              />
-              <path
-                d="M2 13.9C2.8 13.9 3.5 13.6 4.1 13C4.7 12.4 5 11.7 5 10.9C5 10.1 4.7 9.4 4.1 8.8C3.5 8.2 2.8 7.9 2 7.9V13.9Z"
-                fill="white"
-              />
-            </svg>
-            <motion.div
-              className="absolute -right-8 top-1/2 w-8 h-1 bg-white opacity-80"
-              animate={{ width: [8, 20, 8] }}
-              transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5, ease: "easeInOut" }}
-            />
-          </div>
-        </motion.div>
-
-        <div className="container mx-auto px-4 z-20">
-          <div className="max-w-3xl mx-auto text-center text-black">
-            <motion.h1
-              className="text-5xl md:text-7xl font-bold mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              Travel Clean with Bargo.sc
-            </motion.h1>
-            <motion.p
-              className="text-xl md:text-2xl mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Eco-friendly | Compact | Mess-free
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-12"
-            >
-              <SoapCaseImproved />
-            </motion.div>
-          </div>
-        </div>
-
-        <motion.div
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-black cursor-pointer"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}
-          onClick={() => scrollToSection("products")}
-        >
-          <ArrowDown size={32} />
-        </motion.div>
+      <section id="home" ref={heroRef} className="relative min-h-screen flex items-center justify-center pt-20">
+        <HandDrawnHero />
       </section>
 
       {/* Products Section */}
-      <section id="products" ref={productsRef} className="py-20 bg-bargo-cream">
-        <div className="container mx-auto px-4">
+      <section id="products" ref={productsRef} className="py-20 bg-cream-50 relative">
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={isProductsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold mb-4 text-bargo-text text-black">Our Travel Soaps</h2>
-            <p className="text-xl text-bargo-text/80 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-serif font-bold mb-4 text-brown-800">
+              Our <span className="font-handwritten text-olive-600 text-5xl">Travel Soaps</span>
+            </h2>
+
+            {/* Hand-drawn underline */}
+            <div className="flex justify-center mb-6">
+              <svg width="200" height="15">
+                <path d="M0,7 C50,0 100,15 200,7" stroke="#A9BEA5" strokeWidth="2" fill="none" strokeLinecap="round" />
+              </svg>
+            </div>
+
+            <p className="text-xl text-brown-700 max-w-2xl mx-auto">
               One travel-ready solution with four essentials in a sleek, compact case.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {products.map((product, index) => (
-              <ProductCardImproved key={product.id} product={product} index={index} />
+              <ProductCardSketch key={product.id} product={product} index={index} />
             ))}
           </div>
 
@@ -250,104 +208,35 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="bg-bargo-mauve/10 rounded-xl p-8 shadow-lg">
-              <h3 className="text-3xl font-bold mb-8 text-center text-bargo-text">Why Choose Bargo.sc?</h3>
+            <div className="bg-cream-100 border border-brown-200 rounded-sm p-8">
+              <h3 className="text-3xl font-serif font-bold mb-8 text-center text-brown-800">
+                Why Choose <span className="font-handwritten text-olive-600 text-4xl">Bargo.sc</span>?
+              </h3>
+
+              {/* Hand-drawn underline */}
+              <div className="flex justify-center mb-10">
+                <svg width="250" height="15">
+                  <path
+                    d="M0,7 C60,0 120,15 250,7"
+                    stroke="#C9A9A6"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <motion.div
-                  className="bg-white p-6 rounded-lg shadow-md"
-                  whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0, 0, 0, 0.1)" }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="w-16 h-16 bg-bargo-sage rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M12 3L4 9V21H20V9L12 3Z"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path d="M12 21V12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path
-                        d="M12 12L16 16"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12 12L8 16"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                  <h4 className="text-xl font-bold mb-3 text-center text-bargo-text">Eco-friendly</h4>
-                  <p className="text-bargo-text/80 text-center">
-                    Sustainable materials and zero plastic waste for guilt-free travel.
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  className="bg-white p-6 rounded-lg shadow-md"
-                  whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0, 0, 0, 0.1)" }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="w-16 h-16 bg-bargo-mauve rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M19 7H5C3.89543 7 3 7.89543 3 9V18C3 19.1046 3.89543 20 5 20H19C20.1046 20 21 19.1046 21 18V9C21 7.89543 20.1046 7 19 7Z"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M16 20V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H10C9.46957 3 8.96086 3.21071 8.58579 3.58579C8.21071 3.96086 8 4.46957 8 5V20"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                  <h4 className="text-xl font-bold mb-3 text-center text-bargo-text">Compact</h4>
-                  <p className="text-bargo-text/80 text-center">
-                    Perfectly sized for carry-on luggage, saving valuable space in your travel bag.
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  className="bg-white p-6 rounded-lg shadow-md"
-                  whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0, 0, 0, 0.1)" }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="w-16 h-16 bg-yellow-300 rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path d="M12 16V12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path
-                        d="M12 8H12.01"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                  <h4 className="text-xl font-bold mb-3 text-center text-bargo-text">Mess-free</h4>
-                  <p className="text-bargo-text/80 text-center">
-                    Our innovative case design prevents leaks and spills, keeping your luggage clean.
-                  </p>
-                </motion.div>
+                {features.map((feature) => (
+                  <FeatureSketch
+                    key={feature.title}
+                    title={feature.title}
+                    description={feature.description}
+                    icon={feature.icon}
+                    color={feature.color}
+                    index={feature.index}
+                  />
+                ))}
               </div>
             </div>
           </motion.div>
@@ -355,43 +244,59 @@ export default function Home() {
       </section>
 
       {/* Team Section */}
-      <section id="team" ref={teamRef} className="py-20 bg-bargo-sage/20">
-        <div className="container mx-auto px-4">
+      <section id="team" ref={teamRef} className="py-20 bg-olive-50 relative">
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold mb-4 text-bargo-text">Meet Our Team</h2>
-            <p className="text-xl text-bargo-text/80 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-serif font-bold mb-4 text-brown-800">
+              Meet Our <span className="font-handwritten text-olive-600 text-5xl">Team</span>
+            </h2>
+
+            {/* Hand-drawn underline */}
+            <div className="flex justify-center mb-6">
+              <svg width="200" height="15">
+                <path d="M0,7 C50,0 100,15 200,7" stroke="#A9BEA5" strokeWidth="2" fill="none" strokeLinecap="round" />
+              </svg>
+            </div>
+
+            <p className="text-xl text-brown-700 max-w-2xl mx-auto">
               International business students from HZ UAS who founded Bargo.sc
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {team.map((member, index) => (
-              <TeamMemberImproved key={member.id} member={member} index={index} />
+              <TeamMember key={member.id} member={member} index={index} />
             ))}
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section
-        id="contact"
-        ref={contactRef}
-        className="py-20 bg-gradient-to-b from-bargo-mauve to-bargo-cream text-bargo-text"
-      >
-        <div className="container mx-auto px-4">
+      <section id="contact" ref={contactRef} className="py-20 bg-cream-50 text-brown-800 relative">
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={isContactInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold mb-4 text-black">Get In Touch</h2>
-            <p className="text-xl text-black/80 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-serif font-bold mb-4 text-brown-800">
+              Get In <span className="font-handwritten text-olive-600 text-5xl">Touch</span>
+            </h2>
+
+            {/* Hand-drawn underline */}
+            <div className="flex justify-center mb-6">
+              <svg width="200" height="15">
+                <path d="M0,7 C50,0 100,15 200,7" stroke="#C9A9A6" strokeWidth="2" fill="none" strokeLinecap="round" />
+              </svg>
+            </div>
+
+            <p className="text-xl text-brown-700 max-w-2xl mx-auto">
               Have questions about our products or interested in wholesale opportunities?
             </p>
           </motion.div>
@@ -403,95 +308,114 @@ export default function Home() {
               animate={isContactInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg">
-                <h3 className="text-2xl font-bold mb-6 text-black">Contact Information</h3>
+              <div className="bg-cream-100 border border-brown-200 p-8 rounded-sm">
+                <h3 className="text-2xl font-serif font-bold mb-6 text-brown-800">Contact Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-center">
-                    <Mail className="mr-4 text-black" />
-                    <p className="text-black">info@bargo.sc</p>
+                    <Mail className="mr-4 text-olive-600" />
+                    <p className="text-brown-700">info@bargo.sc</p>
                   </div>
                   <div className="flex items-center">
-                    <MapPin className="mr-4 text-black" />
-                    <p className="text-black">HZ University of Applied Sciences, Netherlands</p>
+                    <MapPin className="mr-4 text-olive-600" />
+                    <p className="text-brown-700">HZ University of Applied Sciences, Netherlands</p>
                   </div>
                 </div>
 
-                <h3 className="text-2xl font-bold mt-8 mb-6 text-black">Follow Us</h3>
+                <h3 className="text-2xl font-serif font-bold mt-8 mb-6 text-brown-800">Follow Us</h3>
                 <div className="flex space-x-4">
                   <a
                     href="https://www.instagram.com/bargo.sc/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-bargo-sage transition-colors text-black"
+                    className="hover:text-olive-700 transition-colors text-olive-600"
                   >
                     <Instagram size={24} />
                   </a>
-                  <a href="#" className="hover:text-bargo-sage transition-colors text-black">
+                  <a href="#" className="hover:text-olive-700 transition-colors text-olive-600">
                     <Facebook size={24} />
                   </a>
-                  <a href="#" className="hover:text-bargo-sage transition-colors text-black">
+                  <a href="#" className="hover:text-olive-700 transition-colors text-olive-600">
                     <Twitter size={24} />
                   </a>
                 </div>
 
-                {/* Decorative plane ticket */}
+                {/* Decorative hand-drawn boarding pass */}
                 <motion.div
-                  className="mt-8 bg-white rounded-lg p-4 shadow-lg transform rotate-3"
+                  className="mt-8 bg-cream-50 border border-brown-200 p-4 rounded-sm relative transform rotate-2"
                   whileHover={{ rotate: 0, scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="flex justify-between items-center border-b border-bargo-mauve/20 pb-2 mb-2">
-                    <div className="text-bargo-text font-bold">BOARDING PASS</div>
-                    <div className="text-bargo-mauve font-bold">BARGO AIR</div>
+                  {/* Hand-drawn border */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    <svg width="100%" height="100%" className="absolute inset-0">
+                      <rect
+                        x="3"
+                        y="3"
+                        width="calc(100% - 6px)"
+                        height="calc(100% - 6px)"
+                        rx="2"
+                        fill="none"
+                        stroke="#C9A9A6"
+                        strokeWidth="1"
+                        strokeDasharray="8 4"
+                      />
+                    </svg>
+                  </div>
+
+                  <div className="flex justify-between items-center border-b border-brown-200 pb-2 mb-2">
+                    <div className="text-brown-800 font-bold">BOARDING PASS</div>
+                    <div className="text-olive-600 font-handwritten text-xl">Bargo Air</div>
                   </div>
                   <div className="flex justify-between">
                     <div>
-                      <div className="text-xs text-bargo-text/60">FROM</div>
-                      <div className="font-bold text-bargo-text">HOME</div>
+                      <div className="text-xs text-brown-600">FROM</div>
+                      <div className="font-bold text-brown-800">HOME</div>
                     </div>
                     <div>
-                      <div className="text-xs text-bargo-text/60">TO</div>
-                      <div className="font-bold text-bargo-text">ANYWHERE</div>
+                      <div className="text-xs text-brown-600">TO</div>
+                      <div className="font-bold text-brown-800">ANYWHERE</div>
                     </div>
                     <div>
-                      <div className="text-xs text-bargo-text/60">SEAT</div>
-                      <div className="font-bold text-bargo-text">CLEAN</div>
+                      <div className="text-xs text-brown-600">SEAT</div>
+                      <div className="font-handwritten text-olive-600">Clean</div>
                     </div>
                   </div>
                 </motion.div>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg">
-                <h3 className="text-2xl font-bold mb-6 text-black">Send Us a Message</h3>
+              <div className="bg-cream-100 border border-brown-200 p-8 rounded-sm">
+                <h3 className="text-2xl font-serif font-bold mb-6 text-brown-800">
+                  Send Us a <span className="font-handwritten text-olive-600">Message</span>
+                </h3>
                 <form>
                   <div className="mb-4">
                     <input
                       type="text"
                       placeholder="Your Name"
-                      className="w-full p-3 rounded bg-white/20 backdrop-blur-sm border border-black/40 focus:outline-none focus:ring-2 focus:ring-white/50 text-black placeholder-black/70"
+                      className="w-full p-3 rounded-sm bg-cream-50 border border-brown-200 focus:outline-none focus:ring-2 focus:ring-olive-300 text-brown-800 placeholder-brown-400"
                     />
                   </div>
                   <div className="mb-4">
                     <input
                       type="email"
                       placeholder="Your Email"
-                      className="w-full p-3 rounded bg-white/20 backdrop-blur-sm border border-black/40 focus:outline-none focus:ring-2 focus:ring-white/50 text-black placeholder-black/70"
+                      className="w-full p-3 rounded-sm bg-cream-50 border border-brown-200 focus:outline-none focus:ring-2 focus:ring-olive-300 text-brown-800 placeholder-brown-400"
                     />
                   </div>
                   <div className="mb-4">
                     <textarea
                       placeholder="Your Message"
                       rows={4}
-                      className="w-full p-3 rounded bg-white/20 backdrop-blur-sm border border-black/40 focus:outline-none focus:ring-2 focus:ring-white/50 text-black placeholder-black/70"
+                      className="w-full p-3 rounded-sm bg-cream-50 border border-brown-200 focus:outline-none focus:ring-2 focus:ring-olive-300 text-brown-800 placeholder-brown-400"
                     ></textarea>
                   </div>
                   <motion.button
                     type="submit"
-                    className="w-full bg-white text-bargo-mauve font-bold py-3 px-6 rounded hover:bg-bargo-cream transition-colors"
+                    className="w-full bg-olive-600 text-cream-50 font-bold py-3 px-6 rounded-sm hover:bg-olive-700 transition-colors"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    Send Message
+                    <span className="font-handwritten text-lg">Send Message</span>
                   </motion.button>
                 </form>
               </div>
@@ -501,9 +425,12 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-6 bg-bargo-text text-black text-center">
+      <footer className="py-6 bg-brown-800 text-brown-800 text-center">
         <div className="container mx-auto px-4">
-          <p>© {new Date().getFullYear()} Bargo.sc. All rights reserved.</p>
+          <p className="font-handwritten text-lg">© {new Date().getFullYear()} Bargo.sc. All rights reserved.</p>
+          <div className="mt-2 text-sm text-cream-100/70">
+            <span>Travel clean, travel light</span>
+          </div>
         </div>
       </footer>
     </main>
