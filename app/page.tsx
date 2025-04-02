@@ -7,14 +7,17 @@ import Navbar from "@/components/navbar"
 import TeamMember from "@/components/team-member"
 import HandDrawnHero from "@/components/hand-drawn-hero"
 import ProductCard from "@/components/product-card"
-import FeatureSketch from "@/components/feature-sketch"
+import FeatureSection from "@/components/feature-section"
+
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null)
   const productsRef = useRef<HTMLDivElement>(null)
   const teamRef = useRef<HTMLDivElement>(null)
   const contactRef = useRef<HTMLDivElement>(null)
+  const featuresRef = useRef<HTMLDivElement>(null)
 
+  const isFeaturesInView = useInView(featuresRef, { once: false, amount: 0.3 })
   const isProductsInView = useInView(productsRef, { once: false, amount: 0.3 })
   const isTeamInView = useInView(teamRef, { once: false, amount: 0.3 })
   const isContactInView = useInView(contactRef, { once: false, amount: 0.3 })
@@ -51,9 +54,9 @@ export default function Home() {
       id: 4,
       name: "Coco Cinnamon",
       description: "Warm cinnamon and coconut soap inspired by exotic adventures",
-      color: "bg-amber-100",
-      textColor: "text-amber-800",
-      soapColor: "bg-amber-300",
+      color: "bg-brown-200",
+      textColor: "text-brown-600",
+      soapColor: "bg-brown-200",
       pattern: "circles" as const,
     },
   ]
@@ -169,8 +172,16 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl font-serif font-bold mb-4 text-bargo-text">
-              Our <span className="font-handwritten text-bargo-mauve text-5xl">Travel Soaps</span>
+              Our <span className="font-handwritten text-olive-600 text-5xl">Travel Soaps</span>
             </h2>
+
+            {/* Hand-drawn underline */}
+            <div className="flex justify-center mb-6">
+              <svg width="200" height="15">
+                <path d="M0,7 C50,0 100,15 200,7" stroke="#C9A9A6" strokeWidth="2" fill="none" strokeLinecap="round" />
+              </svg>
+            </div>
+
             <p className="text-xl text-bargo-text/80 max-w-2xl mx-auto">
               One travel-ready solution with four essentials in a sleek, compact case.
             </p>
@@ -182,7 +193,33 @@ export default function Home() {
             ))}
           </div>
 
+          {/*Features section*/}
+          <section id="features" ref={featuresRef}>
           <motion.div
+            className="text-center mt-24"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isProductsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl font-serif font-bold mb-4 text-bargo-text">
+              What makes us <span className="font-handwritten text-olive-600 text-5xl">different ?</span>
+            </h2>
+            
+            {/* Hand-drawn underline */}
+            <div className="flex justify-center mb-6">
+              <svg width="200" height="15">
+                <path d="M0,7 C50,0 100,15 200,7" stroke="#C9A9A6" strokeWidth="2" fill="none" strokeLinecap="round" />
+              </svg>
+            </div>
+
+            <p className="text-xl text-bargo-text/80 max-w-2xl mx-auto">
+            Our soaps are made with natural ingredients that are gentle on your skin and the environment.
+            </p>
+          </motion.div>
+            <FeatureSection isInView={isFeaturesInView} />
+          </section>
+
+          {/* <motion.div
             className="mt-20"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -297,7 +334,7 @@ export default function Home() {
                 </motion.div>
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>
 
