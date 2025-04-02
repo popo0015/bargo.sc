@@ -1,12 +1,12 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useScroll, useTransform, useInView } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { Instagram, Facebook, Twitter, Mail, MapPin, Leaf, Package, Droplets } from "lucide-react"
 import Navbar from "@/components/navbar"
 import TeamMember from "@/components/team-member"
 import HandDrawnHero from "@/components/hand-drawn-hero"
-import ProductCardSketch from "@/components/product-card"
+import ProductCard from "@/components/product-card"
 import FeatureSketch from "@/components/feature-sketch"
 
 export default function Home() {
@@ -15,11 +15,6 @@ export default function Home() {
   const teamRef = useRef<HTMLDivElement>(null)
   const contactRef = useRef<HTMLDivElement>(null)
 
-  const { scrollYProgress } = useScroll()
-  const planeX = useTransform(scrollYProgress, [0, 0.3], ["0%", "100%"])
-  const planeY = useTransform(scrollYProgress, [0, 0.3], ["0%", "20%"])
-  const planeRotate = useTransform(scrollYProgress, [0, 0.3], [0, 10])
-
   const isProductsInView = useInView(productsRef, { once: false, amount: 0.3 })
   const isTeamInView = useInView(teamRef, { once: false, amount: 0.3 })
   const isContactInView = useInView(contactRef, { once: false, amount: 0.3 })
@@ -27,35 +22,39 @@ export default function Home() {
   const products = [
     {
       id: 1,
-      name: "Lavender Calm",
-      description: "Soothing lavender soap for relaxation during your travels",
-      color: "bg-lavender-300",
-      textColor: "text-lavender-800",
-      ingredients: ["Lavender", "Shea Butter", "Olive Oil", "Coconut Oil"],
+      name: "Lavender Mint",
+      description: "Soothing lavender soap with refreshing mint for relaxation during your travels",
+      color: "bg-green-100",
+      textColor: "text-green-800",
+      soapColor: "bg-purple-300",
+      pattern: "lines" as const,
     },
     {
       id: 2,
-      name: "Citrus Fresh",
-      description: "Energizing citrus soap to refresh after a long flight",
-      color: "bg-honey-200",
-      textColor: "text-honey-800",
-      ingredients: ["Orange Peel", "Lemon Oil", "Honey", "Jojoba Oil"],
+      name: "Lemon Honey",
+      description: "Energizing citrus soap with sweet honey to refresh after a long flight",
+      color: "bg-yellow-100",
+      textColor: "text-yellow-800",
+      soapColor: "bg-yellow-300",
+      pattern: "circles" as const,
     },
     {
       id: 3,
       name: "Ocean Breeze",
       description: "Refreshing ocean scent to remind you of beach destinations",
-      color: "bg-sky-200",
-      textColor: "text-sky-800",
-      ingredients: ["Sea Salt", "Algae Extract", "Coconut Oil", "Aloe Vera"],
+      color: "bg-blue-100",
+      textColor: "text-blue-800",
+      soapColor: "bg-blue-300",
+      pattern: "waves" as const,
     },
     {
       id: 4,
-      name: "Forest Mint",
-      description: "Invigorating mint soap inspired by forest adventures",
-      color: "bg-olive-200",
-      textColor: "text-olive-800",
-      ingredients: ["Mint Leaves", "Eucalyptus", "Tea Tree Oil", "Avocado Oil"],
+      name: "Coco Cinnamon",
+      description: "Warm cinnamon and coconut soap inspired by exotic adventures",
+      color: "bg-amber-100",
+      textColor: "text-amber-800",
+      soapColor: "bg-amber-300",
+      pattern: "circles" as const,
     },
   ]
 
@@ -150,28 +149,18 @@ export default function Home() {
     },
   ]
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 80,
-        behavior: "smooth",
-      })
-    }
-  }
-
   return (
     <main className="relative overflow-x-hidden bg-cream-50">
       {/* Navbar */}
       <Navbar />
 
       {/* Hero Section */}
-      <section id="home" ref={heroRef} className="relative min-h-screen flex items-center justify-center pt-20">
+      <section id="home" ref={heroRef} className="relative min-h-screen flex items-center justify-center">
         <HandDrawnHero />
       </section>
 
       {/* Products Section */}
-      <section id="products" ref={productsRef} className="py-20 bg-cream-50 relative">
+      <section id="products" ref={productsRef} className="py-20 bg-bargo-cream relative">
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             className="text-center mb-16"
@@ -179,25 +168,17 @@ export default function Home() {
             animate={isProductsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-serif font-bold mb-4 text-brown-800">
-              Our <span className="font-handwritten text-olive-600 text-5xl">Travel Soaps</span>
+            <h2 className="text-4xl font-serif font-bold mb-4 text-bargo-text">
+              Our <span className="font-handwritten text-bargo-mauve text-5xl">Travel Soaps</span>
             </h2>
-
-            {/* Hand-drawn underline */}
-            <div className="flex justify-center mb-6">
-              <svg width="200" height="15">
-                <path d="M0,7 C50,0 100,15 200,7" stroke="#A9BEA5" strokeWidth="2" fill="none" strokeLinecap="round" />
-              </svg>
-            </div>
-
-            <p className="text-xl text-brown-700 max-w-2xl mx-auto">
+            <p className="text-xl text-bargo-text/80 max-w-2xl mx-auto">
               One travel-ready solution with four essentials in a sleek, compact case.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {products.map((product, index) => (
-              <ProductCardSketch key={product.id} product={product} index={index} />
+              <ProductCard key={product.id} product={product} index={index} />
             ))}
           </div>
 
@@ -208,35 +189,112 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="bg-cream-100 border border-brown-200 rounded-sm p-8">
-              <h3 className="text-3xl font-serif font-bold mb-8 text-center text-brown-800">
-                Why Choose <span className="font-handwritten text-olive-600 text-4xl">Bargo.sc</span>?
+            <div className="bg-bargo-mauve/10 rounded-xl p-8 shadow-lg">
+              <h3 className="text-3xl font-serif font-bold mb-8 text-center text-bargo-text">
+                Why Choose <span className="font-handwritten text-bargo-mauve text-4xl">Bargo.sc</span>?
               </h3>
-
-              {/* Hand-drawn underline */}
-              <div className="flex justify-center mb-10">
-                <svg width="250" height="15">
-                  <path
-                    d="M0,7 C60,0 120,15 250,7"
-                    stroke="#C9A9A6"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </div>
-
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {features.map((feature) => (
-                  <FeatureSketch
-                    key={feature.title}
-                    title={feature.title}
-                    description={feature.description}
-                    icon={feature.icon}
-                    color={feature.color}
-                    index={feature.index}
-                  />
-                ))}
+                <motion.div
+                  className="bg-white p-6 rounded-lg shadow-md"
+                  whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0, 0, 0, 0.1)" }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="w-16 h-16 bg-bargo-sage rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M12 3L4 9V21H20V9L12 3Z"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path d="M12 21V12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path
+                        d="M12 12L16 16"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M12 12L8 16"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 text-center text-bargo-text">
+                    <span className="font-handwritten text-2xl text-bargo-sage">Eco-friendly</span>
+                  </h4>
+                  <p className="text-bargo-text/80 text-center">
+                    Sustainable materials and zero plastic waste for guilt-free travel.
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  className="bg-white p-6 rounded-lg shadow-md"
+                  whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0, 0, 0, 0.1)" }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="w-16 h-16 bg-bargo-mauve rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M19 7H5C3.89543 7 3 7.89543 3 9V18C3 19.1046 3.89543 20 5 20H19C20.1046 20 21 19.1046 21 18V9C21 7.89543 20.1046 7 19 7Z"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M16 20V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H10C9.46957 3 8.96086 3.21071 8.58579 3.58579C8.21071 3.96086 8 4.46957 8 5V20"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 text-center text-bargo-text">
+                    <span className="font-handwritten text-2xl text-bargo-mauve">Compact</span>
+                  </h4>
+                  <p className="text-bargo-text/80 text-center">
+                    Perfectly sized for carry-on luggage, saving valuable space in your travel bag.
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  className="bg-white p-6 rounded-lg shadow-md"
+                  whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0, 0, 0, 0.1)" }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="w-16 h-16 bg-yellow-300 rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path d="M12 16V12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path
+                        d="M12 8H12.01"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 text-center text-bargo-text">
+                    <span className="font-handwritten text-2xl text-yellow-600">Mess-free</span>
+                  </h4>
+                  <p className="text-bargo-text/80 text-center">
+                    Our innovative case design prevents leaks and spills, keeping your luggage clean.
+                  </p>
+                </motion.div>
               </div>
             </div>
           </motion.div>

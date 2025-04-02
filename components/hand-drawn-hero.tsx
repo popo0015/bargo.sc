@@ -11,6 +11,16 @@ export default function HandDrawnHero() {
     setIsLoaded(true)
   }, [])
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 80,
+        behavior: "smooth",
+      })
+    }
+  }
+
   return (
     <div className="relative w-full min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Background pattern */}
@@ -77,68 +87,20 @@ export default function HandDrawnHero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="relative"
           >
-            <div className="relative w-full h-[400px] md:h-[500px]">
+            <div className="relative w-full h-[400px] md:h-[800px]">
               <Image
-                src="/images/elements/soap-sketch.png"
+                src="/images/elements/background-soap2.png"
                 alt="Organic soap ingredients illustration"
                 fill
                 className="object-contain"
               />
             </div>
-
-            {/* Animated elements */}
-            <motion.div
-              className="absolute top-1/4 left-1/4 w-16 h-16"
-              animate={{
-                y: [0, -10, 0],
-                rotate: [0, 5, 0],
-              }}
-              transition={{
-                repeat: Number.POSITIVE_INFINITY,
-                duration: 4,
-                ease: "easeInOut",
-              }}
-            >
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <path
-                  d="M50,10 C70,10 90,30 90,50 C90,70 70,90 50,90 C30,90 10,70 10,50 C10,30 30,10 50,10 Z"
-                  fill="none"
-                  stroke="#C9A9A6"
-                  strokeWidth="2"
-                  strokeDasharray="5,5"
-                />
-              </svg>
-            </motion.div>
-
-            <motion.div
-              className="absolute bottom-1/4 right-1/4 w-20 h-20"
-              animate={{
-                y: [0, 10, 0],
-                rotate: [0, -5, 0],
-              }}
-              transition={{
-                repeat: Number.POSITIVE_INFINITY,
-                duration: 5,
-                ease: "easeInOut",
-                delay: 1,
-              }}
-            >
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <path
-                  d="M20,20 L80,20 L80,80 L20,80 Z"
-                  fill="none"
-                  stroke="#A9BEA5"
-                  strokeWidth="2"
-                  strokeDasharray="5,5"
-                />
-              </svg>
-            </motion.div>
           </motion.div>
         </div>
 
         {/* Scroll indicator */}
         <motion.div
-          className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 cursor-pointer"
           animate={{
             y: [0, 10, 0],
           }}
@@ -147,6 +109,7 @@ export default function HandDrawnHero() {
             duration: 1.5,
             ease: "easeInOut",
           }}
+          onClick={() => scrollToSection("products")}
         >
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -158,6 +121,7 @@ export default function HandDrawnHero() {
             />
           </svg>
         </motion.div>
+
       </div>
     </div>
   )

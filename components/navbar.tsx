@@ -65,7 +65,7 @@ export default function Navbar() {
                 e.preventDefault()
                 scrollToSection("home")
               }}
-              className="text-2xl font-bold"
+              className="text-2xl font-bold font-handwritten"
             >
               Bargo.sc
             </a>
